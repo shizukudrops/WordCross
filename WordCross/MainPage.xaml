@@ -1,0 +1,29 @@
+﻿<Page
+    x:Class="WordCross.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WordCross"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.ColumnSpan="2" Margin="40,0,40,0" VerticalAlignment="Center">
+            <TextBox Name="searchBox" KeyDown="OnKeyDownHandler"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            
+        </StackPanel>
+        <WebView Grid.Row="1" Grid.Column="1" x:Name="webView1" Source="https://www.ldoceonline.com/jp/dictionary/"/>
+    </Grid>
+</Page>
