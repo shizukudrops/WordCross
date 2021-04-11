@@ -20,14 +20,14 @@
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0" Grid.ColumnSpan="3" BorderBrush="LightGray" BorderThickness="0 0 0 1">
-            <TextBlock></TextBlock>
+            <TextBlock/>
         </Border>
         <Border Grid.Row="1" Grid.Column="0" Background="LightGray" BorderBrush="LightGray" BorderThickness="0 0 1 0">
             <TextBlock></TextBlock>
         </Border>
 
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <TextBox Name="searchBox" PlaceholderText="Type any word(s) and enter" KeyDown="searchBox_KeyDown" Margin="10 0 10 0"/>
+            <TextBox Name="searchBox" PlaceholderText="Type any word(s) and enter" KeyDown="SearchBox_KeyDown" Margin="10 0 10 0"/>
         </StackPanel>
 
         <StackPanel Grid.Row="0" Grid.Column="2">
@@ -37,13 +37,14 @@
                 <AppBarButton Icon="Add" Label="Add Dictionary" Click="AddDictionary_Click" />
 
                 <CommandBar.SecondaryCommands>
+                    <AppBarToggleButton x:Name="disableAdsToggle" Label="Disable Ads (Experimental)" Click="DisableAds_Click"/>
                     <AppBarButton Label="Property" Click="Property_Click"/>
                 </CommandBar.SecondaryCommands>
 
             </CommandBar>
         </StackPanel>
         <StackPanel Grid.Row="1">
-            <ListView x:Name="dictList" AllowDrop="True" CanReorderItems="True" SelectionChanged="dictList_SelectionChanged" RightTapped="dictList_RightTapped">
+            <ListView x:Name="dictList" AllowDrop="True" CanReorderItems="True" SelectionChanged="DictList_SelectionChanged" RightTapped="DictList_RightTapped">
                 <ListView.ContextFlyout>
                     <MenuFlyout x:Name="DictListContextMenu">
                         <MenuFlyoutItem Text="Remove" Click="Remove_Click" />

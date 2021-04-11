@@ -35,12 +35,25 @@ namespace WordCross
 
         object RightClickedItem;
 
+        public bool IsAdsDisabled {
+            get {
+                var flag = ApplicationData.Current.LocalSettings.Values["disableAds"];
+                if (flag == null) return false;
+                else return (bool)flag;
+            }
+            set {
+                ApplicationData.Current.LocalSettings.Values["disableAds"] = value;
+            } }
+
         public MainPage()
         {
             this.InitializeComponent();
 
-            var localSettings = ApplicationData.Current.LocalSettings;
-            var dictionariesString = localSettings.Values["dictionaries"] as string;
+            //広告ブロック機能のオンオフをトグルに反映
+            disableAdsToggle.IsChecked = IsAdsDisabled;
+
+            //辞書リストを読み込む
+            var dictionariesString = ApplicationData.Current.LocalSettings.Values["dictionaries"] as string;           
 
             if (dictionariesString == null)
             {
@@ -59,7 +72,7 @@ namespace WordCross
             dictList.ItemsSource = dictView;
 
             App.Current.Suspending += OnSuspending;
-            webView.FrameNavigationStarting += webView_FrameNavigationStarting;
+            webView.FrameNavigationStarting += WebView_FrameNavigationStarting;
         }
 
         #region mymethod
@@ -71,7 +84,7 @@ namespace WordCross
             await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => this.dictView.Add(dict));
         }
 
-        private void search(DictionaryInfo dict, string input)
+        private void Search(DictionaryInfo dict, string input)
         {
             //どの辞書も選ばれていなかったら一番上の辞書で検索する。辞書が存在しなければ戻る。
             if (dict == null)
@@ -126,20 +139,20 @@ namespace WordCross
             localSettings.Values["dictionaries"] = json;
         }   
 
-        private void dictList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DictList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            search((DictionaryInfo)dictList.SelectedItem, searchBox.Text);
+            Search((DictionaryInfo)dictList.SelectedItem, searchBox.Text);
         }
 
-        private void searchBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        private void SearchBox_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
             {
-                search((DictionaryInfo)dictList.SelectedItem, searchBox.Text);
+                Search((DictionaryInfo)dictList.SelectedItem, searchBox.Text);
             }
         }
 
-        private void dictList_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        private void DictList_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
             ListView listView = (ListView)sender;
             DictListContextMenu.ShowAt(listView, e.GetPosition(listView));
@@ -154,7 +167,7 @@ namespace WordCross
             await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Frame frame = new Frame();
-                frame.Navigate(typeof(AddDictionary), this);
+                frame.Navigate(typeof(AddDictionaryPage), this);
                 Window.Current.Content = frame;
 
                 // You have to activate the window in order to show it later.
@@ -204,13 +217,18 @@ Released under MIT License";
             if(webView.CanGoForward) webView.GoForward();
         }
 
-        private void webView_FrameNavigationStarting(object sender, WebViewNavigationStartingEventArgs args)
+        private void WebView_FrameNavigationStarting(object sender, WebViewNavigationStartingEventArgs args)
         {
-            if (string.IsNullOrWhiteSpace(args.Uri.Host)) return;
+            if (IsAdsDisabled == false) return;
 
             // Cancel navigation if URL is not allowed.
             if (!IsAllowedUri(args.Uri))
                 args.Cancel = true;
+        }
+
+        private void DisableAds_Click(object sender, RoutedEventArgs e)
+        {
+            IsAdsDisabled = (bool)disableAdsToggle.IsChecked;
         }
     }
 }

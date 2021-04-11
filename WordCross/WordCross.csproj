@@ -124,8 +124,8 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AddDictionary.xaml.cs">
-      <DependentUpon>AddDictionary.xaml</DependentUpon>
+    <Compile Include="AddDictionaryPage.xaml.cs">
+      <DependentUpon>AddDictionaryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -158,7 +158,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AddDictionary.xaml">
+    <Page Include="AddDictionaryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
