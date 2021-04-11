@@ -13,7 +13,7 @@ namespace WordCross
         [JsonProperty]
         public string Name { get; set; }
         [JsonProperty]
-        public string BaseUrl { get; set; }
+        public string BaseUri { get; set; }
         [JsonProperty]
         public string Separator { get; set; }
 
@@ -22,13 +22,13 @@ namespace WordCross
         public DictionaryInfo(string name, string baseUrl) 
         {
             Name = name;
-            BaseUrl = baseUrl;
+            BaseUri = baseUrl;
         }
 
-        public DictionaryInfo(string name, string baseUrl, string separator)
+        public DictionaryInfo(string name, string baseUri, string separator)
         {
             Name = name;
-            BaseUrl = baseUrl;
+            BaseUri = baseUri;
             Separator = separator;
         }
 

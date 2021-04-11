@@ -59,9 +59,17 @@ namespace WordCross
             dictList.ItemsSource = dictView;
 
             App.Current.Suspending += OnSuspending;
+            webView.FrameNavigationStarting += webView_FrameNavigationStarting;
         }
 
         #region mymethod
+
+        //AddDictionaryウィンドウから呼び出されるメソッド
+        public async void AddNewDictionary(DictionaryInfo dict)
+        {
+            //辞書リストに辞書を追加する
+            await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => this.dictView.Add(dict));
+        }
 
         private void search(DictionaryInfo dict, string input)
         {
@@ -73,25 +81,50 @@ namespace WordCross
             }
 
             var words = input.Split(" ");
-            var target = string.Join(dict.Separator, words);
-            var final = dict.BaseUrl + target;
-            webView.Source = new Uri(final);
+            string separator;
+
+            //separatorが存在しなければホワイトスペースで代用する
+            if (string.IsNullOrEmpty(dict.Separator))
+            {
+                separator = " ";
+            }
+            else
+            {
+                separator = dict.Separator;
+            }
+            var target = string.Join(separator, words);
+            var final = dict.BaseUri + target;
+            webView.Navigate(new Uri(final));
+        }
+
+        //登録された辞書サイト本体のホスト以外へのアクセス（広告など）かどうかを判定する
+        private bool IsAllowedUri(Uri uri)
+        {
+            var dictUri =
+                from d in dictView
+                select new Uri(d.BaseUri);
+
+            var dictUrlHost =
+                from u in dictUri
+                select u.Host;
+
+            if (dictUrlHost.Contains(uri.Host))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         #endregion
 
-        private void OnSuspending(object sender, Windows.ApplicationModel.SuspendingEventArgs e)
+        private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var json = JsonConvert.SerializeObject(dictView);
             var localSettings = ApplicationData.Current.LocalSettings;
 
             localSettings.Values["dictionaries"] = json;
-        }
-
-        public void AddNewDictionary(DictionaryInfo dict)
-        {
-            this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => this.dictView.Add(dict));
-        }
+        }   
 
         private void dictList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -111,12 +144,7 @@ namespace WordCross
             ListView listView = (ListView)sender;
             DictListContextMenu.ShowAt(listView, e.GetPosition(listView));
             RightClickedItem = ((FrameworkElement)e.OriginalSource).DataContext;
-        }
-
-        private void Remove_Click(object sender, RoutedEventArgs e)
-        {
-            dictView.Remove((DictionaryInfo)RightClickedItem);
-        }
+        }    
 
         async private void AddDictionary_Click(object sender, RoutedEventArgs e)
         {
@@ -136,6 +164,11 @@ namespace WordCross
             });
 
             bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId, ViewSizePreference.Default);   
+        }
+
+        private void Remove_Click(object sender, RoutedEventArgs e)
+        {
+            dictView.Remove((DictionaryInfo)RightClickedItem);
         }
 
         private async void Property_Click(object sender, RoutedEventArgs e)
@@ -163,12 +196,21 @@ Released under MIT License";
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            webView.GoBack();
+            if(webView.CanGoBack) webView.GoBack();
         }
 
         private void Forward_Click(object sender, RoutedEventArgs e)
         {
-            webView.GoForward();
+            if(webView.CanGoForward) webView.GoForward();
+        }
+
+        private void webView_FrameNavigationStarting(object sender, WebViewNavigationStartingEventArgs args)
+        {
+            if (string.IsNullOrWhiteSpace(args.Uri.Host)) return;
+
+            // Cancel navigation if URL is not allowed.
+            if (!IsAllowedUri(args.Uri))
+                args.Cancel = true;
         }
     }
 }

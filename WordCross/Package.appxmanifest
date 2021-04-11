@@ -8,7 +8,7 @@
 
   <Identity
     Name="dd9a052f-9671-4cd6-964e-1ad53aa2ca36"
-    Publisher="CN=hyama"
+    Publisher="CN=shizukudrops"
     Version="0.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="dd9a052f-9671-4cd6-964e-1ad53aa2ca36" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
