@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.WindowManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -33,13 +34,30 @@ namespace WordCross
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            base.OnNavigatedTo(e);
             MainPage = (MainPage)e.Parameter;
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        private async void Add_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.AddNewDictionary(new DictionaryInfo(nameBox.Text, urlBox.Text, separatorBox.Text));
-            Window.Current.Close();
+            var isValidUrl = Uri.IsWellFormedUriString(urlBox.Text, UriKind.Absolute);
+
+            if (isValidUrl)
+            {
+                MainPage.AddNewDictionary(new DictionaryInfo(nameBox.Text, urlBox.Text, separatorBox.Text));
+                Window.Current.Close();
+            }
+            else
+            {
+                var invalidUrlDialog = new ContentDialog
+                {
+                    Title = "Error",
+                    Content = "Ivalid URL",
+                    CloseButtonText = "Ok"
+                };
+
+                await invalidUrlDialog.ShowAsync();
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

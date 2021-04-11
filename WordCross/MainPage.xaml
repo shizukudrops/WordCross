@@ -10,29 +10,39 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.6*"/>
-            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.ColumnSpan="2">
-            <CommandBar DefaultLabelPosition="Right">
-                <AppBarToggleButton Icon="Add" Label="Add Dictionary" Click="AddDictionary_Click" />
+        <Border Grid.Row="0" Grid.ColumnSpan="3" BorderBrush="LightGray" BorderThickness="0 0 0 1">
+            <TextBlock></TextBlock>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="0" Background="LightGray" BorderBrush="LightGray" BorderThickness="0 0 1 0">
+            <TextBlock></TextBlock>
+        </Border>
+
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <TextBox Name="searchBox" PlaceholderText="Type any word(s) and enter" KeyDown="searchBox_KeyDown" Margin="10 0 10 0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="2">
+            <CommandBar DefaultLabelPosition="Right" Background="#FFE6E6E6">
+                <AppBarButton Icon="Back" Click="Back_Click"/>
+                <AppBarButton Icon="Forward" Click="Forward_Click"/>
+                <AppBarButton Icon="Add" Label="Add Dictionary" Click="AddDictionary_Click" />
 
                 <CommandBar.SecondaryCommands>
-                    <AppBarButton Label="Property"/>
+                    <AppBarButton Label="Property" Click="Property_Click"/>
                 </CommandBar.SecondaryCommands>
 
             </CommandBar>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-            <TextBox Name="searchBox" PlaceholderText="Type any word(s) and enter" KeyDown="searchBox_KeyDown" Margin="20 0 400 20"/>
-        </StackPanel>
-        <StackPanel Grid.Row="2">
+        <StackPanel Grid.Row="1">
             <ListView x:Name="dictList" AllowDrop="True" CanReorderItems="True" SelectionChanged="dictList_SelectionChanged" RightTapped="dictList_RightTapped">
                 <ListView.ContextFlyout>
                     <MenuFlyout x:Name="DictListContextMenu">
@@ -41,6 +51,6 @@
                 </ListView.ContextFlyout>
             </ListView>
         </StackPanel>
-        <WebView Grid.Row="2" Grid.Column="1" x:Name="webView1" Source="ms-appx-web:///Assets/about.html"/>
+        <WebView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="webView" Source="ms-appx-web:///Assets/about.html"/>
     </Grid>
 </Page>
