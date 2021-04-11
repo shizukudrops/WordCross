@@ -197,7 +197,7 @@ namespace WordCross
 © {package.PublisherDisplayName}
 Released under MIT License
 
-Icons made by Freepik (www.freepik.com) from Flaticon (www.flaticon.com/)";
+Icons made by Freepik (www.freepik.com) from Flaticon (www.flaticon.com)";
 
             var propertyDialog = new ContentDialog
             {
