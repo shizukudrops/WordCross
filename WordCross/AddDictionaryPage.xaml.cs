@@ -53,7 +53,7 @@ namespace WordCross
                 {
                     Title = "Error",
                     Content = "Ivalid URL",
-                    CloseButtonText = "Ok"
+                    CloseButtonText = "OK"
                 };
 
                 await invalidUrlDialog.ShowAsync();

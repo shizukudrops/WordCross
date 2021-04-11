@@ -203,7 +203,7 @@ Icons made by Freepik (www.freepik.com) from Flaticon (www.flaticon.com/)";
             {
                 Title = "Property",
                 Content = content,
-                CloseButtonText = "Ok"
+                CloseButtonText = "OK"
             };
 
             await propertyDialog.ShowAsync();
