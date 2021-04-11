@@ -38,6 +38,7 @@
 
                 <CommandBar.SecondaryCommands>
                     <AppBarToggleButton x:Name="disableAdsToggle" Label="Disable Ads (Experimental)" Click="DisableAds_Click"/>
+                    <AppBarSeparator/>
                     <AppBarButton Label="Property" Click="Property_Click"/>
                 </CommandBar.SecondaryCommands>
 
@@ -52,6 +53,6 @@
                 </ListView.ContextFlyout>
             </ListView>
         </StackPanel>
-        <WebView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="webView" Source="ms-appx-web:///Assets/about.html"/>
+        <WebView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="webView" Source="ms-appx-web:///Assets/startpage_en.html"/>
     </Grid>
 </Page>
