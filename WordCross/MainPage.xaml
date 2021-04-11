@@ -14,16 +14,33 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="0.6*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.ColumnSpan="2" Margin="40,0,40,0" VerticalAlignment="Center">
-            <TextBox Name="searchBox" KeyDown="OnKeyDownHandler"></TextBox>
+        <StackPanel Grid.ColumnSpan="2">
+            <CommandBar DefaultLabelPosition="Right">
+                <AppBarToggleButton Icon="Add" Label="Add Dictionary" Click="AddDictionary_Click" />
+
+                <CommandBar.SecondaryCommands>
+                    <AppBarButton Label="Property"/>
+                </CommandBar.SecondaryCommands>
+
+            </CommandBar>
         </StackPanel>
-        <StackPanel Grid.Row="1">
-            
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+            <TextBox Name="searchBox" PlaceholderText="Type any word(s) and enter" KeyDown="searchBox_KeyDown" Margin="20 0 400 20"/>
         </StackPanel>
-        <WebView Grid.Row="1" Grid.Column="1" x:Name="webView1" Source="https://www.ldoceonline.com/jp/dictionary/"/>
+        <StackPanel Grid.Row="2">
+            <ListView x:Name="dictList" AllowDrop="True" CanReorderItems="True" SelectionChanged="dictList_SelectionChanged" RightTapped="dictList_RightTapped">
+                <ListView.ContextFlyout>
+                    <MenuFlyout x:Name="DictListContextMenu">
+                        <MenuFlyoutItem Text="Remove" Click="Remove_Click" />
+                    </MenuFlyout>
+                </ListView.ContextFlyout>
+            </ListView>
+        </StackPanel>
+        <WebView Grid.Row="2" Grid.Column="1" x:Name="webView1" Source="ms-appx-web:///Assets/about.html"/>
     </Grid>
 </Page>

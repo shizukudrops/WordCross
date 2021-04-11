@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="WordCross.AddDictionary"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WordCross"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="600" Height="400">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel>
+            <TextBlock Text="Name"></TextBlock>
+            <TextBox Name="nameBox"></TextBox>
+            <TextBlock Text="Base URL"></TextBlock>
+            <TextBox Name="urlBox"></TextBox>
+            <TextBlock Text="Separator"></TextBlock>
+            <TextBox Name="separatorBox"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top">
+            <Button Content="Add" Click="Add_Click" Margin="0,0,10,0" Width="100"></Button>
+            <Button Content="Cancel" Click="Cancel_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Page>
