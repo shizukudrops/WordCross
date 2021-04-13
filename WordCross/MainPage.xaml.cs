@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
@@ -239,6 +240,12 @@ Icons made by Freepik (www.freepik.com) from Flaticon (www.flaticon.com)";
 
         private async void Current_Activated(object sender, WindowActivatedEventArgs e)
         {
+            if (e.WindowActivationState == CoreWindowActivationState.Deactivated)
+            {
+                return;
+            }
+
+            await Task.Delay(150);
             var result = await FocusManager.TryFocusAsync(searchBox, FocusState.Programmatic);
 
             if (!result.Succeeded)
