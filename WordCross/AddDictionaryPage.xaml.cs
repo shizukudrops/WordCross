@@ -40,24 +40,36 @@ namespace WordCross
 
         private async void Add_Click(object sender, RoutedEventArgs e)
         {
-            var isValidUrl = Uri.IsWellFormedUriString(urlBox.Text, UriKind.Absolute);
-
-            if (isValidUrl)
+            //名前が空欄でないかを判定
+            if (string.IsNullOrWhiteSpace(nameBox.Text))
             {
-                MainPage.AddNewDictionary(new DictionaryInfo(nameBox.Text, urlBox.Text, separatorBox.Text));
-                Window.Current.Close();
+                var invalidNameDialog = new ContentDialog
+                {
+                    Title = "Error",
+                    Content = "Please fill in a dictionary name.",
+                    CloseButtonText = "OK"
+                };
+
+                await invalidNameDialog.ShowAsync();
+                return;
             }
-            else
+            
+            //有効なURIかを判定
+            if (!Uri.IsWellFormedUriString(urlBox.Text, UriKind.Absolute))
             {
                 var invalidUrlDialog = new ContentDialog
                 {
                     Title = "Error",
-                    Content = "Ivalid URL",
+                    Content = "Invalid URL. Please fill in a valid one.",
                     CloseButtonText = "OK"
                 };
 
                 await invalidUrlDialog.ShowAsync();
+                return;
             }
+
+            MainPage.AddNewDictionary(new DictionaryInfo(nameBox.Text, urlBox.Text, separatorBox.Text));
+            Window.Current.Close();
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

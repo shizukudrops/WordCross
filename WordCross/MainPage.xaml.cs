@@ -107,8 +107,10 @@ namespace WordCross
             {
                 separator = dict.Separator;
             }
+
             var target = string.Join(separator, words);
             var final = dict.BaseUri + target;
+
             webView.Navigate(new Uri(final));
         }
 
@@ -237,7 +239,13 @@ Icons made by Freepik (www.freepik.com) from Flaticon (www.flaticon.com)";
 
         private async void Current_Activated(object sender, WindowActivatedEventArgs e)
         {
-            await FocusManager.TryFocusAsync(searchBox, FocusState.Programmatic);
+            var result = await FocusManager.TryFocusAsync(searchBox, FocusState.Programmatic);
+
+            if (!result.Succeeded)
+            {
+                // Restore focus to original element. 
+                this.Focus(FocusState.Programmatic);
+            }
         }
 
         private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
