@@ -78,7 +78,7 @@ namespace WordCross
             Window.Current.Activated += Current_Activated;
         }
 
-        #region mymethod
+        #region my methods
 
         //AddDictionaryウィンドウから呼び出されるメソッド
         public async void AddNewDictionary(DictionaryInfo dict)
@@ -136,13 +136,7 @@ namespace WordCross
 
         #endregion
 
-        private void OnSuspending(object sender, SuspendingEventArgs e)
-        {
-            var json = JsonConvert.SerializeObject(dictView);
-            var localSettings = ApplicationData.Current.LocalSettings;
-
-            localSettings.Values["dictionaries"] = json;
-        }   
+        //UI events
 
         private void DictList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -222,21 +216,19 @@ Icons made by Freepik (www.freepik.com) from Flaticon (www.flaticon.com)";
         private void Forward_Click(object sender, RoutedEventArgs e)
         {
             if(webView.CanGoForward) webView.GoForward();
-        }
-
-        private void WebView_FrameNavigationStarting(object sender, WebViewNavigationStartingEventArgs args)
-        {
-            if (IsAdsDisabled == false) return;
-
-            // 即席広告ブロック機能
-            if (!IsAllowedUri(args.Uri))
-                args.Cancel = true;
-        }
+        }        
 
         private void DisableAds_Click(object sender, RoutedEventArgs e)
         {
             IsAdsDisabled = (bool)disableAdsToggle.IsChecked;
+        }        
+
+        private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            searchBox.SelectAll();
         }
+
+        //Non-UI events
 
         private async void Current_Activated(object sender, WindowActivatedEventArgs e)
         {
@@ -255,9 +247,21 @@ Icons made by Freepik (www.freepik.com) from Flaticon (www.flaticon.com)";
             }
         }
 
-        private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
+        private void WebView_FrameNavigationStarting(object sender, WebViewNavigationStartingEventArgs args)
         {
-            searchBox.SelectAll();
+            if (IsAdsDisabled == false) return;
+
+            // 即席広告ブロック機能
+            if (!IsAllowedUri(args.Uri))
+                args.Cancel = true;
+        }
+
+        private void OnSuspending(object sender, SuspendingEventArgs e)
+        {
+            var json = JsonConvert.SerializeObject(dictView);
+            var localSettings = ApplicationData.Current.LocalSettings;
+
+            localSettings.Values["dictionaries"] = json;
         }
     }
 }
