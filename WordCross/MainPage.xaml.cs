@@ -71,8 +71,10 @@ namespace WordCross
 
             dictList.ItemsSource = dictView;
 
+            //イベント登録
             App.Current.Suspending += OnSuspending;
             webView.FrameNavigationStarting += WebView_FrameNavigationStarting;
+            Window.Current.Activated += Current_Activated;
         }
 
         #region mymethod
@@ -159,7 +161,7 @@ namespace WordCross
             RightClickedItem = ((FrameworkElement)e.OriginalSource).DataContext;
         }    
 
-        async private void AddDictionary_Click(object sender, RoutedEventArgs e)
+        private async void AddDictionary_Click(object sender, RoutedEventArgs e)
         {
             CoreApplicationView newView = CoreApplication.CreateNewView();
             int newViewId = 0;
@@ -223,7 +225,7 @@ Icons made by Freepik (www.freepik.com) from Flaticon (www.flaticon.com)";
         {
             if (IsAdsDisabled == false) return;
 
-            // Cancel navigation if URL is not allowed.
+            // 即席広告ブロック機能
             if (!IsAllowedUri(args.Uri))
                 args.Cancel = true;
         }
@@ -231,6 +233,16 @@ Icons made by Freepik (www.freepik.com) from Flaticon (www.flaticon.com)";
         private void DisableAds_Click(object sender, RoutedEventArgs e)
         {
             IsAdsDisabled = (bool)disableAdsToggle.IsChecked;
+        }
+
+        private async void Current_Activated(object sender, WindowActivatedEventArgs e)
+        {
+            await FocusManager.TryFocusAsync(searchBox, FocusState.Programmatic);
+        }
+
+        private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            searchBox.SelectAll();
         }
     }
 }

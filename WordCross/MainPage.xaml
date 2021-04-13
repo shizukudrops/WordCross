@@ -27,7 +27,7 @@
         </Border>
 
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <TextBox Name="searchBox" PlaceholderText="Type any word(s) and enter" KeyDown="SearchBox_KeyDown" Margin="10 0 10 0"/>
+            <TextBox Name="searchBox" PlaceholderText="Type any word(s) and enter" KeyDown="SearchBox_KeyDown" GotFocus="SearchBox_GotFocus" Margin="10 0 10 0"/>
         </StackPanel>
 
         <StackPanel Grid.Row="0" Grid.Column="2">
