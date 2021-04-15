@@ -22,6 +22,7 @@ using Windows.UI.Xaml.Navigation;
 using Newtonsoft.Json;
 using Windows.Storage;
 using Windows.ApplicationModel;
+using Windows.Globalization;
 
 // 空白ページの項目テンプレートについては、https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x411 を参照してください
 
@@ -72,6 +73,18 @@ namespace WordCross
 
             dictList.ItemsSource = dictView;
 
+            //スタートページの表示と言語による切り替え
+            var language = ApplicationLanguages.Languages.First();
+
+            if (language == "ja-JP" || language == "ja")
+            {
+                webView.Navigate(new Uri("ms-appx-web:///Assets/startpage_ja.html"));
+            }
+            else
+            {
+                webView.Navigate(new Uri("ms-appx-web:///Assets/startpage_en.html"));
+            }
+
             //イベント登録
             App.Current.Suspending += OnSuspending;
             webView.FrameNavigationStarting += WebView_FrameNavigationStarting;
@@ -109,10 +122,15 @@ namespace WordCross
                 separator = dict.Separator;
             }
 
-            var target = string.Join(separator, words);
-            var final = dict.BaseUri + target;
+            var searchWords = string.Join(separator, words);
+            var targetUriString = dict.BaseUri + searchWords;
 
-            webView.Navigate(new Uri(final));
+            Uri targetUri;
+
+            if (Uri.TryCreate(targetUriString, UriKind.Absolute, out targetUri))
+            {
+                webView.Navigate(targetUri);
+            }
         }
 
         //登録された辞書サイト本体のホスト以外へのアクセス（広告など）かどうかを判定する

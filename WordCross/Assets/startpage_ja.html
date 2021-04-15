@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title></title>
+</head>
+<body>
+    <h1>WordCross</h1>
+    <p>WordCrossは複数のオンライン辞書を簡単に切り替えながら検索できるアプリです。</p>
+
+    <h1>How to Use</h1>
+    <p>Just type any English word(s) into the search box (on the top left side) and press Enter. You'll get the definition in the dictionary listed on the top in the dictionary list (the left panel).</p>
+    <p>You can also look up phrases.</p>
+
+    <h2>Managing Dictionaries</h2>
+
+    <h3>Add</h3>
+    <p>Select "Add Dictionary" in the menu bar. You need to provide three information.</p>
+
+    <h4>Name</h4>
+    <p>It will appear in the dictionary list. Anything is acceptable.</p>
+
+    <h4>Base URL</h4>
+    <p>Look up any word in the dictionary you are registering. Specify the part of the URL excluding your search word.</p>
+    <p>For example, when you look up "sleepy" in the Merriam Webster, the URL of the result page will be "https://www.merriam-webster.com/dictionary/sleepy". In this case, the base url is "https://www.merriam-webster.com/dictionary/".</p>
+
+    <h4>Separator</h4>
+    <p>It is necessary when you look up phrases. It specifies how dictionaries bind multiple words.</p>
+    <p>For example, when you look up "go to bed" in the Collins Thesaurus, the URL of the result page will be "https://www.collinsdictionary.com/dictionary/english-thesaurus/go-to-bed". The "go to bed" was converted into "go-to-bed", so the separator should be "-".</p>
+    <p>When the separator is unspecified, a whitespace will be used.</p>
+
+    <h3>Reorder</h3>
+    <p>Drag & drop in the dictionary list and it'll work perfectly!</p>
+
+    <h3>Remove</h3>
+    <p>Right-click a dictionary and select "Remove".</p>
+
+    <h2>Other Functions</h2>
+    <h3>Adblock</h3>
+    <p>Check "Disable Ads" in the menu bar to enable the adblock function. Beware that it is experimental, so if you encounter any issues, please uncheck it. </p>
+    <br />
+</body>
+</html>

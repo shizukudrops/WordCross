@@ -34,7 +34,7 @@
             <CommandBar DefaultLabelPosition="Right" Background="#FFE6E6E6">
                 <AppBarButton Icon="Back" Click="Back_Click"/>
                 <AppBarButton Icon="Forward" Click="Forward_Click"/>
-                <AppBarButton Icon="Add" Label="Add Dictionary" Click="AddDictionary_Click" />
+                <AppBarButton x:Uid="AddDictionaryButton" Icon="Add" Click="AddDictionary_Click" />
 
                 <CommandBar.SecondaryCommands>
                     <AppBarToggleButton x:Name="disableAdsToggle" Label="Disable Ads (Experimental)" Click="DisableAds_Click"/>
@@ -53,6 +53,6 @@
                 </ListView.ContextFlyout>
             </ListView>
         </StackPanel>
-        <WebView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="webView" Source="ms-appx-web:///Assets/startpage_en.html"/>
+        <WebView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="webView" />
     </Grid>
 </Page>

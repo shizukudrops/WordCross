@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WordCross</RootNamespace>
     <AssemblyName>WordCross</AssemblyName>
-    <DefaultLanguage>ja-JP</DefaultLanguage>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
@@ -144,6 +144,7 @@
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\startpage_en.html" />
+    <Content Include="Assets\startpage_ja.html" />
     <Content Include="Assets\style.css" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -176,8 +177,11 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <PRIResource Include="Settings\en-US\Resources.resw" />
+    <PRIResource Include="Settings\ja-JP\Resources.resw" />
     <None Include="WordCross_TemporaryKey.pfx" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
