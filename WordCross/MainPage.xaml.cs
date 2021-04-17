@@ -55,16 +55,22 @@ namespace WordCross
             disableAdsToggle.IsChecked = IsAdsDisabled;
 
             //辞書リストを読み込む
-            var dictionariesString = ApplicationData.Current.LocalSettings.Values["dictionaries"] as string;           
+            var dictionariesString = ApplicationData.Current.LocalSettings.Values["dictionaries"] as string;
 
             if (dictionariesString == null)
             {
                 dictView = new ObservableCollection<DictionaryInfo>();
                 dictView.Add(new DictionaryInfo("Longman", "https://www.ldoceonline.com/jp/dictionary/", "-"));
+                dictView.Add(new DictionaryInfo("Oxford Learners", "https://www.oxfordlearnersdictionaries.com/definition/english/", "-"));
                 dictView.Add(new DictionaryInfo("Collins Thesaurus", "https://www.collinsdictionary.com/dictionary/english-thesaurus/", "-"));
                 dictView.Add(new DictionaryInfo("Merriam Webster", "https://www.merriam-webster.com/dictionary/", "%20"));
                 dictView.Add(new DictionaryInfo("英辞郎", "https://eow.alc.co.jp/", "+"));
+                dictView.Add(new DictionaryInfo("goo辞書英和", "https://dictionary.goo.ne.jp/word/en/", "+"));
+                dictView.Add(new DictionaryInfo("Weblio", "https://ejje.weblio.jp/content/", "+"));
                 dictView.Add(new DictionaryInfo("DictJuggler", "https://www.dictjuggler.net/yakugo/?word=", "%20"));
+                dictView.Add(new DictionaryInfo("WordNet 3.1", "http://wordnetweb.princeton.edu/perl/webwn?s=", "+"));
+                dictView.Add(new DictionaryInfo("Wikipedia日本語版", "https://ja.wikipedia.org/wiki/", ""));
+                dictView.Add(new DictionaryInfo("Wikipedia English", "https://en.wikipedia.org/wiki/", ""));
             }
             else
             {
