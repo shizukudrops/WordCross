@@ -120,4 +120,22 @@
   <data name="AddDictionaryButton.Label" xml:space="preserve">
     <value>辞書を追加</value>
   </data>
+  <data name="addDictionary_AddButton.Content" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="addDictionary_CancelButton.Content" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="addDictionary_Header.Text" xml:space="preserve">
+    <value>辞書を追加</value>
+  </data>
+  <data name="prorpetyButton.Label" xml:space="preserve">
+    <value>プロパティ</value>
+  </data>
+  <data name="removeButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="searchBox.PlaceholderText" xml:space="preserve">
+    <value>検索ワードを入力してエンター</value>
+  </data>
 </root>

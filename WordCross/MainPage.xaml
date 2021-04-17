@@ -27,19 +27,19 @@
         </Border>
 
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <TextBox Name="searchBox" PlaceholderText="Type any word(s) and enter" KeyDown="SearchBox_KeyDown" GotFocus="SearchBox_GotFocus" Margin="10 0 10 0"/>
+            <TextBox x:Uid="searchBox" Name="searchBox" KeyDown="SearchBox_KeyDown" GotFocus="SearchBox_GotFocus" Margin="10 0 10 0"/>
         </StackPanel>
 
         <StackPanel Grid.Row="0" Grid.Column="2">
             <CommandBar DefaultLabelPosition="Right" Background="#FFE6E6E6">
                 <AppBarButton Icon="Back" Click="Back_Click"/>
                 <AppBarButton Icon="Forward" Click="Forward_Click"/>
-                <AppBarButton x:Uid="AddDictionaryButton" Icon="Add" Click="AddDictionary_Click" />
+                <AppBarButton x:Uid="addDictionaryButton" Icon="Add" Click="AddDictionary_Click" />
 
                 <CommandBar.SecondaryCommands>
                     <AppBarToggleButton x:Name="disableAdsToggle" Label="Disable Ads (Experimental)" Click="DisableAds_Click"/>
                     <AppBarSeparator/>
-                    <AppBarButton Label="Property" Click="Property_Click"/>
+                    <AppBarButton x:Uid="prorpetyButton" Click="Property_Click"/>
                 </CommandBar.SecondaryCommands>
 
             </CommandBar>
@@ -48,7 +48,7 @@
             <ListView x:Name="dictList" AllowDrop="True" CanReorderItems="True" SelectionChanged="DictList_SelectionChanged" RightTapped="DictList_RightTapped">
                 <ListView.ContextFlyout>
                     <MenuFlyout x:Name="DictListContextMenu">
-                        <MenuFlyoutItem Text="Remove" Click="Remove_Click" />
+                        <MenuFlyoutItem x:Uid="removeButton" Click="Remove_Click" />
                     </MenuFlyout>
                 </ListView.ContextFlyout>
             </ListView>

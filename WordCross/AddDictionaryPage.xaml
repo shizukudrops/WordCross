@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         
         <StackPanel Margin="0,-1,0,0">
-            <TextBlock Text="Add Dictionary" FontSize="24" Margin="0,0,0,30"></TextBlock>
+            <TextBlock x:Uid="addDictionary_Header" FontSize="24" Margin="0,0,0,30"></TextBlock>
             <TextBlock Text="Name"></TextBlock>
             <TextBox Name="nameBox"></TextBox>
             <TextBlock Text="Base URL" Margin="0,11,0,0"></TextBlock>
@@ -24,8 +24,8 @@
             <TextBox Name="separatorBox"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,20,0,0">
-            <Button Content="Add" Click="Add_Click" Margin="0,0,10,0" Width="100"></Button>
-            <Button Content="Cancel" Click="Cancel_Click"></Button>
+            <Button x:Uid="addDictionary_AddButton" Click="Add_Click" Margin="0,0,10,0" Width="100"></Button>
+            <Button x:Uid="addDictionary_CancelButton" Click="Cancel_Click"></Button>
         </StackPanel>
     </Grid>
 </Page>

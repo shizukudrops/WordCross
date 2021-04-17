@@ -117,7 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddDictionaryButton.Label" xml:space="preserve">
+  <data name="addDictionaryButton.Label" xml:space="preserve">
     <value>Add Dictionary</value>
+  </data>
+  <data name="addDictionary_AddButton.Content" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="addDictionary_CancelButton.Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="addDictionary_Header.Text" xml:space="preserve">
+    <value>Add Dictionary</value>
+  </data>
+  <data name="prorpetyButton.Label" xml:space="preserve">
+    <value>Prorpety</value>
+  </data>
+  <data name="removeButton.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="searchBox.PlaceholderText" xml:space="preserve">
+    <value>Type any word(s) and enter</value>
   </data>
 </root>
