@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddDictionaryButton.Label" xml:space="preserve">
+  <data name="addDictionaryButton.Label" xml:space="preserve">
     <value>辞書を追加</value>
   </data>
   <data name="addDictionary_AddButton.Content" xml:space="preserve">
