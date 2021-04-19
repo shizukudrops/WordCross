@@ -23,6 +23,7 @@ using Newtonsoft.Json;
 using Windows.Storage;
 using Windows.ApplicationModel;
 using Windows.Globalization;
+using Windows.System;
 
 // 空白ページの項目テンプレートについては、https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x411 を参照してください
 
@@ -162,17 +163,17 @@ namespace WordCross
 
         //UI events
 
-        private void DictList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DictList_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            Search((DictionaryInfo)dictList.SelectedItem, searchBox.Text);
-        }
-
-        private void SearchBox_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-            if (e.Key == Windows.System.VirtualKey.Enter)
+            if(e.Key == VirtualKey.Enter)
             {
                 Search((DictionaryInfo)dictList.SelectedItem, searchBox.Text);
             }
+        }
+
+        private void DictList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Search((DictionaryInfo)e.ClickedItem, searchBox.Text);
         }
 
         private void DictList_RightTapped(object sender, RightTappedRoutedEventArgs e)
@@ -180,7 +181,48 @@ namespace WordCross
             ListView listView = (ListView)sender;
             DictListContextMenu.ShowAt(listView, e.GetPosition(listView));
             RightClickedItem = ((FrameworkElement)e.OriginalSource).DataContext;
-        }    
+        }
+
+        private void SearchBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case VirtualKey.Enter:
+                    Search((DictionaryInfo)dictList.SelectedItem, searchBox.Text);
+                    break;
+
+                case VirtualKey.Up:
+                    if(dictList.SelectedIndex - 1 >= 0){
+                        dictList.SelectedIndex -= 1;
+                    }
+                    break;
+
+                case VirtualKey.Down:
+                    if (dictList.SelectedIndex + 1 < dictList.Items.Count)
+                    {
+                        if (dictList.SelectedIndex < 0)
+                        {
+                            dictList.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            dictList.SelectedIndex += 1;
+                        }
+                    }
+                    break;
+
+            }
+            if (e.Key == VirtualKey.Enter)
+            {
+                Search((DictionaryInfo)dictList.SelectedItem, searchBox.Text);
+            }
+
+        }
+
+        private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            searchBox.SelectAll();
+        }
 
         private async void AddDictionary_Click(object sender, RoutedEventArgs e)
         {
@@ -246,11 +288,6 @@ Icons made by Freepik (www.freepik.com) from Flaticon (www.flaticon.com)";
         {
             IsAdsDisabled = (bool)disableAdsToggle.IsChecked;
         }        
-
-        private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            searchBox.SelectAll();
-        }
 
         //Non-UI events
 

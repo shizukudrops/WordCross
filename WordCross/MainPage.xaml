@@ -45,7 +45,7 @@
             </CommandBar>
         </StackPanel>
         <StackPanel Grid.Row="1">
-            <ListView x:Name="dictList" AllowDrop="True" CanReorderItems="True" SelectionChanged="DictList_SelectionChanged" RightTapped="DictList_RightTapped">
+            <ListView x:Name="dictList" AllowDrop="True" CanReorderItems="True" KeyDown="DictList_KeyDown" ItemClick="DictList_ItemClick" RightTapped="DictList_RightTapped" IsItemClickEnabled="True">
                 <ListView.ContextFlyout>
                     <MenuFlyout x:Name="DictListContextMenu">
                         <MenuFlyoutItem x:Uid="removeButton" Click="Remove_Click" />
