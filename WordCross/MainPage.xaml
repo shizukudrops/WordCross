@@ -31,7 +31,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="0" Grid.Column="2">
-            <CommandBar DefaultLabelPosition="Right" Background="#FFE6E6E6">
+            <CommandBar DefaultLabelPosition="Right" VerticalContentAlignment="Center" Background="#FFE6E6E6">
                 <AppBarButton Icon="Back" Click="Back_Click"/>
                 <AppBarButton Icon="Forward" Click="Forward_Click"/>
                 <AppBarButton x:Uid="addDictionaryButton" Icon="Add" Click="AddDictionary_Click" />
@@ -42,17 +42,25 @@
                     <AppBarButton x:Uid="prorpetyButton" Click="Property_Click"/>
                 </CommandBar.SecondaryCommands>
 
+                <CommandBar.Content>
+                    <StackPanel Orientation="Horizontal" Margin="12,0,12,0">
+                        <SymbolIcon x:Name="commandBarContentSymbol" Visibility="Collapsed" Symbol="Globe" />
+                        <TextBlock x:Name="commandBarContentBlock" Margin="12 0 0 0" />
+                    </StackPanel>
+                    
+                </CommandBar.Content>
             </CommandBar>
         </StackPanel>
         <StackPanel Grid.Row="1">
             <ListView x:Name="dictList" AllowDrop="True" CanReorderItems="True" KeyDown="DictList_KeyDown" ItemClick="DictList_ItemClick" RightTapped="DictList_RightTapped" IsItemClickEnabled="True">
                 <ListView.ContextFlyout>
                     <MenuFlyout x:Name="DictListContextMenu">
-                        <MenuFlyoutItem x:Uid="removeButton" Click="Remove_Click" />
+                        <MenuFlyoutItem x:Uid="removeButton" Icon="Delete" Click="Remove_Click" />
                     </MenuFlyout>
                 </ListView.ContextFlyout>
             </ListView>
         </StackPanel>
+
         <WebView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="webView" />
     </Grid>
 </Page>

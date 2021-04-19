@@ -24,6 +24,7 @@ using Windows.Storage;
 using Windows.ApplicationModel;
 using Windows.Globalization;
 using Windows.System;
+using Windows.Networking.Connectivity;
 
 // 空白ページの項目テンプレートについては、https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x411 を参照してください
 
@@ -96,6 +97,7 @@ namespace WordCross
             App.Current.Suspending += OnSuspending;
             webView.FrameNavigationStarting += WebView_FrameNavigationStarting;
             Window.Current.Activated += Current_Activated;
+            NetworkInformation.NetworkStatusChanged += NetworkStatusChanged;
         }
 
         #region my methods
@@ -323,6 +325,26 @@ Icons made by Freepik (www.freepik.com) from Flaticon (www.flaticon.com)";
             var localSettings = ApplicationData.Current.LocalSettings;
 
             localSettings.Values["dictionaries"] = json;
+        }
+
+        private async void NetworkStatusChanged(object sender)
+        {
+            if(NetworkInformation.GetInternetConnectionProfile() == null)
+            {
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    commandBarContentSymbol.Visibility = Visibility.Visible;
+                    commandBarContentBlock.Text = "No Internet Connection";
+                });
+            }
+            else
+            {
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    commandBarContentSymbol.Visibility = Visibility.Collapsed;
+                    commandBarContentBlock.Text = "";
+                });
+            }
         }
     }
 }
