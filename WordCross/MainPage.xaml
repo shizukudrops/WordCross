@@ -37,8 +37,7 @@
                 <AppBarButton x:Uid="addDictionaryButton" Icon="Add" Click="AddDictionary_Click" />
 
                 <CommandBar.SecondaryCommands>
-                    <AppBarToggleButton x:Name="disableAdsToggle" Label="Disable Ads (Experimental)" Click="DisableAds_Click"/>
-                    <AppBarSeparator/>
+                    <AppBarToggleButton x:Name="disableAdsToggle" Label="Disable Ads (Experimental)" Visibility="Collapsed" Click="DisableAds_Click"/>
                     <AppBarButton x:Uid="prorpetyButton" Click="Property_Click"/>
                 </CommandBar.SecondaryCommands>
 

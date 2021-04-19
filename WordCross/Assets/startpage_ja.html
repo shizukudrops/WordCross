@@ -11,8 +11,8 @@
     <p>WordCrossは複数のオンライン辞書を簡単に切り替えながら検索できるアプリです。</p>
 
     <h1>How to Use</h1>
-    <p>Just type any English word(s) into the search box (on the top left side) and press Enter. You'll get the definition in the dictionary listed on the top in the dictionary list (the left panel).</p>
-    <p>You can also look up phrases.</p>
+    <p>左上の検索ボックスに好きな英単語を入れてエンターを押してください。左の辞書リストの一番上の辞書で検索されます。</p>
+    <p>複数の単語からなる成句も検索できます。</p>
 
     <h2>辞書の管理</h2>
 
@@ -23,23 +23,19 @@
     <p>辞書リストに表示される名前です。分かりやすいものをつけてください。</p>
 
     <h4>Base URL</h4>
-    <p>Look up any word in the dictionary you are registering. Specify the part of the URL excluding your search word.</p>
-    <p>For example, when you look up "sleepy" in the Merriam Webster, the URL of the result page will be "https://www.merriam-webster.com/dictionary/sleepy". In this case, the base url is "https://www.merriam-webster.com/dictionary/".</p>
-
+    <p>登録したいオンライン辞書で何か単語を検索し、検索結果ページのURLのうち検索ワードを除外した部分を入力してください。</p>
+    <p>例えば、Merriam Websterで「sleepy」を検索すると、検索結果のページのURLは「https://www.merriam-webster.com/dictionary/sleepy」となります。この場合、「https://www.merriam-webster.com/dictionary/」の部分を入力してください。</p>
+    
     <h4>Separator</h4>
-    <p>It is necessary when you look up phrases. It specifies how dictionaries bind multiple words.</p>
-    <p>For example, when you look up "go to bed" in the Collins Thesaurus, the URL of the result page will be "https://www.collinsdictionary.com/dictionary/english-thesaurus/go-to-bed". The "go to bed" was converted into "go-to-bed", so the separator should be "-".</p>
-    <p>When the separator is unspecified, a whitespace will be used.</p>
+    <p>成句を検索するときに必要なパラメーターです。オンライン辞書がどのように複数のワードを接続するかを指定します。</p>
+    <p>例えば、Collins Thsaurusで「go to bed」を検索すると、検索結果のページのURLは「https://www.collinsdictionary.com/dictionary/english-thesaurus/go-to-bed」となります。「go to bed」が「go-to-bed」に変換されているので、「-」を入力してください。</p>
+    <p>何も入力しなければ、半角スペースで代用されます。</p>
 
     <h3>並べ替え</h3>
     <p>辞書リストでドラッグ＆ドロップするだけです！</p>
 
     <h3>削除</h3>
     <p>辞書を右クリックして「削除」を選択してください。</p>
-
-    <h2>Other Functions</h2>
-    <h3>Adblock</h3>
-    <p>Check "Disable Ads" in the menu bar to enable the adblock function. Beware that it is experimental, so if you encounter any issues, please uncheck it. </p>
     <br />
 </body>
 </html>
