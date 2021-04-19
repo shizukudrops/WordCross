@@ -129,6 +129,9 @@
   <data name="addDictionary_Header.Text" xml:space="preserve">
     <value>辞書を追加</value>
   </data>
+  <data name="NoInternetConnection" xml:space="preserve">
+    <value>インターネットに接続できません</value>
+  </data>
   <data name="prorpetyButton.Label" xml:space="preserve">
     <value>プロパティ</value>
   </data>

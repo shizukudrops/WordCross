@@ -129,6 +129,9 @@
   <data name="addDictionary_Header.Text" xml:space="preserve">
     <value>Add Dictionary</value>
   </data>
+  <data name="NoInternetConnection" xml:space="preserve">
+    <value>No Internet Connection</value>
+  </data>
   <data name="prorpetyButton.Label" xml:space="preserve">
     <value>Prorpety</value>
   </data>

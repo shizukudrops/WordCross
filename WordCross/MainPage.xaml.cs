@@ -25,6 +25,7 @@ using Windows.ApplicationModel;
 using Windows.Globalization;
 using Windows.System;
 using Windows.Networking.Connectivity;
+using Windows.ApplicationModel.Resources;
 
 // 空白ページの項目テンプレートについては、https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x411 を参照してください
 
@@ -91,6 +92,15 @@ namespace WordCross
             else
             {
                 webView.Navigate(new Uri("ms-appx-web:///Assets/startpage_en.html"));
+            }
+
+            //インターネットに接続されていないなら表示
+            var loader = new ResourceLoader();
+
+            if (NetworkInformation.GetInternetConnectionProfile() == null)
+            {
+                commandBarContentSymbol.Visibility = Visibility.Visible;
+                commandBarContentBlock.Text = loader.GetString("NoInternetConnection");
             }
 
             //イベント登録
@@ -329,12 +339,14 @@ Icons made by Freepik (www.freepik.com) from Flaticon (www.flaticon.com)";
 
         private async void NetworkStatusChanged(object sender)
         {
+            var loader = new ResourceLoader();
+
             if(NetworkInformation.GetInternetConnectionProfile() == null)
             {
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     commandBarContentSymbol.Visibility = Visibility.Visible;
-                    commandBarContentBlock.Text = "No Internet Connection";
+                    commandBarContentBlock.Text = loader.GetString("NoInternetConnection");
                 });
             }
             else

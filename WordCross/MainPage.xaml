@@ -44,8 +44,8 @@
 
                 <CommandBar.Content>
                     <StackPanel Orientation="Horizontal" Margin="12,0,12,0">
-                        <SymbolIcon x:Name="commandBarContentSymbol" Visibility="Collapsed" Symbol="Globe" />
-                        <TextBlock x:Name="commandBarContentBlock" Margin="12 0 0 0" />
+                        <FontIcon x:Name="commandBarContentSymbol" Visibility="Collapsed" FontFamily="Segoe MDL2 Assets" Glyph="&#xF140;" />
+                        <TextBlock x:Name="commandBarContentBlock" Margin="6 0 0 0" />
                     </StackPanel>
                     
                 </CommandBar.Content>
