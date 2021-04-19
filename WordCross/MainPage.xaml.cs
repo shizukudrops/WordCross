@@ -222,13 +222,7 @@ namespace WordCross
                         }
                     }
                     break;
-
             }
-            if (e.Key == VirtualKey.Enter)
-            {
-                Search((DictionaryInfo)dictList.SelectedItem, searchBox.Text);
-            }
-
         }
 
         private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
