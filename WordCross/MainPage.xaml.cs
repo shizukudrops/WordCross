@@ -86,7 +86,7 @@ namespace WordCross
                 }
                 else
                 {
-                    dictView.Add(new DictionaryInfo("Longman", "https://www.ldoceonline.com/jp/dictionary/", "-"));
+                    dictView.Add(new DictionaryInfo("Longman", "https://www.ldoceonline.com/dictionary/", "-"));
                     dictView.Add(new DictionaryInfo("Oxford Learners", "https://www.oxfordlearnersdictionaries.com/definition/english/", "-"));
                     dictView.Add(new DictionaryInfo("Collins Thesaurus", "https://www.collinsdictionary.com/dictionary/english-thesaurus/", "-"));
                     dictView.Add(new DictionaryInfo("Merriam Webster", "https://www.merriam-webster.com/dictionary/", "%20"));
